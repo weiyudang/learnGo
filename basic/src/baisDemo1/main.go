@@ -1,6 +1,12 @@
 package main
 
-import "fmt"
+
+import (
+	"./config"
+	"fmt"
+)
+
+
 
 func main() {
 
@@ -16,7 +22,7 @@ func main() {
 
 	fmt.Println(GetSeq()())
 
-
+	// 常量的设置
 	const(
 		C1=1<<iota
 		C2
@@ -24,10 +30,28 @@ func main() {
 
 	)
 
-
-
-
 	fmt.Println(C1,C2,C3)
+
+
+	//binary
+	fmt.Printf("%d - %b\n",42,42)
+
+	var sum=0
+	for i:=0;i<100;i++{
+		sum+=i
+
+	}
+
+	fmt.Printf("100的加和是:%d\n",sum)
+
+	// package  call
+	fmt.Println(config.Name)
+
+
+	config.ShowInfo()
+
+
+
 }
 
 
@@ -39,6 +63,8 @@ func Max(a,b int) int {
 		return b
 	}
 }
+
+//闭包，内部函数可以访问外部函数的变量
 
 func GetSeq() func() int{
 	i:=1
