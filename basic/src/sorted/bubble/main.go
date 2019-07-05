@@ -2,23 +2,29 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
+	"time"
 )
 
 func main() {
 
 	arr := []int{1, 6, 2, 4, 9, 0, 5, 3, 7, 8}
 
-	bubbleSort(arr)
+	arrRand:=randArry(10)
+
+	//bubbleSort(arr)
 
 	//selectSort(arr)
 
 	//InsertSort(arr)
 
+	fmt.Println(arrRand)
+
+	ShellSort(arr)
 
 
-	//ShellSort(arr)
-	fmt.Println(arr)
-	fmt.Println(11/2)
+	//fmt.Println(arr)
+	//fmt.Println(11/2)
 
 
 }
@@ -38,12 +44,12 @@ func bubbleSort(arr []int) {
 
 				arr[i], arr[i+1] = arr[i+1], arr[i]
 			}
-			fmt.Println(arr)
+			//fmt.Println(arr)
 
 
 
 		}
-		fmt.Println("---------")
+
 
 	}
 
@@ -139,11 +145,58 @@ func ShellSort(arr []int)  {
 
 
 
-func quickSort(arr []int){
+func quickSort(arr []int) []int {
+
+	if len(arr)<=1{
+		return  arr
+	}
+
+	median:=arr[rand.Intn(len(arr))]
+
+	lowPart:=make([]int,0,len(arr))
+	highPart:=make([]int,0,len(arr))
+
+	middlePart:=make([]int,0,len(arr))
+
+	for _,item:=range arr{
+		switch  {
+		case item<median:
+			lowPart = append(lowPart,item)
+		case item==median:
+			middlePart=append(middlePart,item)
+
+		case item>median:
+			highPart=append(highPart,item)
 
 
+		}
+	}
+
+	lowPart=quickSort(lowPart)
+	highPart=quickSort(highPart)
+
+	lowPart=append(lowPart,middlePart...)
+	lowPart=append(lowPart,highPart...)
+	return lowPart
 
 }
+
+func randArry(n int) []int{
+
+
+	arr:=make([]int,n)
+
+
+	rand.Seed(time.Now().UnixNano())
+
+	for i:=0;i<n;i++ {
+		arr[i]=rand.Intn(100)
+	}
+
+	return  arr
+}
+
+
 
 
 
