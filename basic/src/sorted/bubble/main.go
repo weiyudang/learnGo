@@ -186,7 +186,7 @@ func randArry(n int) []int{
 
 	arr:=make([]int,n)
 
-
+	// go会默认随机种子，这样每次就会一样，所有需要自己设置随机种子
 	rand.Seed(time.Now().UnixNano())
 
 	for i:=0;i<n;i++ {
